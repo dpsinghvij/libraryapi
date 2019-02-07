@@ -22,13 +22,15 @@ class UserController(Controller):
             user = User(name=name, email=email, password=password)
             self.session.add(user)
             self.session.commit()
-            self.end_session()
+
             # use email id to create JWT token
             token = create_access_token(identity=email)
             # return the user info with the token
             return {"accesstoken": token}
         except Exception as exception:
             return {"error": "error in inserting record " + str(exception)}
+        finally:
+            self.end_session()
 
     def loginUser(self, email, password):
         # initialize session
@@ -43,4 +45,7 @@ class UserController(Controller):
         # use email id to create JWT token
         token = create_access_token(identity=user.email)
         # return the user info with the token
+        self.end_session()
         return {"accesstoken": token}
+
+

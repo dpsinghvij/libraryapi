@@ -24,6 +24,9 @@ class Book(Base):
     created_dt = Column(DateTime, default=func.now())
     uploader_id= Column(Integer, ForeignKey('user.id'))
 
+    def toDict(self):
+        return {c.name: str(self.__getattribute__(c.name)) for c in self.__table__.columns}
+
 engine= create_engine('mysql+pymysql://libadmin:library@localhost/library?charset=utf8')
 try:
     Base.metadata.create_all(engine)
