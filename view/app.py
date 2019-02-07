@@ -68,6 +68,14 @@ def updateBookNameById(book_id):
         return jsonify({"error": "check your input"}), 403
     return jsonify(bookController.updateBook(book_id,bookname))
 
+@app.route('/books/<int:book_id>',methods= ['DELETE'])
+@jwt_required
+def deleteBookNameById(book_id):
+    bookController = BookController()
+    return jsonify(bookController.deleteBook(book_id))
+
+#TODO function for handling errors such 404, wrong method invocation
+
 if __name__ == '__main__':
     app.run()
 

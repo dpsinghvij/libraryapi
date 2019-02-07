@@ -1,0 +1,17 @@
+asn1crypto==0.24.0
+cffi==1.11.5
+Click==7.0
+cryptography==2.5
+Flask==1.0.2
+Flask-JWT==0.3.2
+Flask-JWT-Extended==3.17.0
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.1.0
+pycparser==2.19
+PyJWT==1.4.2
+PyMySQL==0.9.3
+six==1.12.0
+SQLAlchemy==1.2.17
+SQLAlchemy-Utils==0.33.11
+Werkzeug==0.14.1
