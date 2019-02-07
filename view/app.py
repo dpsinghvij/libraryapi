@@ -59,6 +59,15 @@ def getBookById(book_id):
     bookController = BookController()
     return jsonify(bookController.getBookById(book_id))
 
+@app.route('/books/<int:book_id>',methods= ['PUT'])
+@jwt_required
+def updateBookNameById(book_id):
+    bookname = request.form.get('name', None)
+    bookController = BookController()
+    if bookname is None:
+        return jsonify({"error": "check your input"}), 403
+    return jsonify(bookController.updateBook(book_id,bookname))
+
 if __name__ == '__main__':
     app.run()
 

@@ -38,4 +38,29 @@ class BookController(Controller):
         self.end_session()
         return book.toDict()
 
+    def updateBook(self,bookId, name):
+        self.create_session()
+        try:
+            self.session.query(Book).filter(Book.id == bookId).update({Book.name:name})
+            self.session.commit()
+            # below line is to display the modification
+            book= self.session.query(Book).filter(Book.id == bookId).first()
+            return book.toDict()
+        except Exception as exception:
+            return {"error": "error in updating records "+str(exception)}
+        finally:
+            self.end_session()
+
+
+    def deleteBook(self,bookId):
+        self.create_session()
+        try:
+            self.session.query(Book).filter(Book.id == bookId).delete()
+            self.session.commit()
+            # below line is to display the modification
+            return {"msg": "entry successfully deleted"}
+        except Exception as exception:
+            return {"error": "error in updating records "+str(exception)}
+        finally:
+            self.end_session()
 
