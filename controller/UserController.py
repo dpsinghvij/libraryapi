@@ -24,7 +24,7 @@ class UserController(Controller):
             self.session.commit()
 
             # use email id to create JWT token
-            token = create_access_token(identity=email)
+            token = create_access_token(identity=email,expires_delta=False)
             # return the user info with the token
             return {"accesstoken": token}
         except Exception as exception:
@@ -43,7 +43,7 @@ class UserController(Controller):
             return {"error": "email or password is incorrect"}
         # if the password is correct than return the accesstoken
         # use email id to create JWT token
-        token = create_access_token(identity=user.email)
+        token = create_access_token(identity=user.email,expires_delta=False)
         # return the user info with the token
         self.end_session()
         return {"accesstoken": token}

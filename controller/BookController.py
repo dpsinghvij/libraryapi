@@ -31,3 +31,11 @@ class BookController(Controller):
         self.end_session()
         return [book.toDict() for book in books]
 
+
+    def getBookById(self,bookId):
+        self.create_session()
+        book= self.session.query(Book).filter(Book.id==bookId).first()
+        self.end_session()
+        return book.toDict()
+
+

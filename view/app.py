@@ -53,7 +53,11 @@ def getBooks():
     bookController = BookController()
     return jsonify(bookController.getBooks())
 
-
+@app.route('/books/<int:book_id>',methods= ['GET'])
+@jwt_required
+def getBookById(book_id):
+    bookController = BookController()
+    return jsonify(bookController.getBookById(book_id))
 
 if __name__ == '__main__':
     app.run()
