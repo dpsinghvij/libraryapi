@@ -13,7 +13,7 @@ class User(Base):
     id = Column(Integer, primary_key= True)
     name = Column(NVARCHAR(100), nullable= False)
     email = Column(NVARCHAR(100), nullable= False,unique=True)
-    password = Column(EncryptedType(NVARCHAR(100), secret_key, AesEngine, 'pkcs5'))
+    password = Column(NVARCHAR(100), nullable= False)
     created_dt = Column(DateTime, default=func.now())
 
 class Book(Base):

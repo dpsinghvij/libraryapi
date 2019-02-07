@@ -24,6 +24,16 @@ def registration():
     userController= UserController()
     return jsonify(userController.registerUser(name=name,email=email,password=password))
 
+@app.route('/login', methods= ['POST'])
+def login():
+    email= request.form.get('email', None)
+    password= request.form.get('password', None)
+    message = []
+    if email is None or password is None:
+        return jsonify({"error": "check your input"}), 403
+    userController = UserController()
+    return jsonify(userController.loginUser(email=email, password=password))
+
 
 if __name__ == '__main__':
     app.run()
