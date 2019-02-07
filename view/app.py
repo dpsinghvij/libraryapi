@@ -47,6 +47,13 @@ def addBook():
     bookController= BookController()
     return jsonify(bookController.addBook(name=bookname,author=author,uploader_email=user_email))
 
+@app.route('/books',methods= ['GET'])
+@jwt_required
+def getBooks():
+    bookController = BookController()
+    return jsonify(bookController.getBooks())
+
+
 
 if __name__ == '__main__':
     app.run()

@@ -25,5 +25,9 @@ class BookController(Controller):
 
 
 
-
+    def getBooks(self):
+        self.create_session()
+        books=self.session.query(Book).all()
+        self.end_session()
+        return [book.toDict() for book in books]
 
